@@ -2,6 +2,7 @@ import os
 import re
 from .preprocessor import Preprocessor
 
+#processes proximity query
 
 class ProximityQuery:
 
@@ -105,13 +106,3 @@ class ProximityQuery:
 
         return ret_docs
 
-
-# p = pre.Preprocessor('F:\IR\Assignment 01\Abstracts')
-# p.PreprocessingChain()
-# prox = ProximityQuery(p.PositonalIndex)
-# # print(prox.PostionalIndex)
-# print(prox.ProcessProximityQuery('neural information /2'))
-# print()
-# print(prox.ProcessProximityQuery('feature track /5'))
-# print()
-# print(prox.ProcessProximityQuery('novel accurate /2'))

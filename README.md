@@ -4,6 +4,13 @@ Description
 
     Boolean Retrieval Model have been implemented, which can process Boolean user query that can only be formed by joining three (or more) terms (t1, t2 and t3) with (AND, OR and NOT) Boolean operators. It can also process For positional queries, the query text contains “/” along with a k intended to return all documents that contains t1 and t2, k words apart on either side of the text
 
+File Description
+
+    src/processor.py        => preprocesses the collection of documents, builds, stores and loads inverted and positional indexes.
+    src/boolean.py          => processes boolean queries
+    src/proximity.py        => processes proximity queries
+    src/QueryProcessor.py   => processes input and returns result set to frontend
+
 Inverted Index Structure
 
     Dictionary - key = Vocablary term  :  Value = list of docId in which term appears

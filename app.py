@@ -10,6 +10,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+# route to return result set
 @app.route("/results", methods=["POST", "GET"])
 def results():
     if request.method == 'POST':
@@ -22,6 +23,7 @@ def results():
     else:
         return render_template("result.html")
 
+# route to show result
 @app.route("/showDoc/<id>", methods=["POST", "GET"])
 def showDoc(id):
     return render_template(id + ".txt")

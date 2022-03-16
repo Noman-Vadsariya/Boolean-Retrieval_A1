@@ -1,5 +1,6 @@
 from .preprocessor import Preprocessor
 
+# processes boolean query
 
 class BooleanQuery:
     def __init__(self, Dictionary, Postings, totalDocs):
@@ -156,36 +157,3 @@ class BooleanQuery:
 
         result = [i + 1 for i in tempResult]
         return (result, processingCost)
-
-
-# p = pre.Preprocessor("F:\IR\Assignment 01\Documents")
-# p = pre.Preprocessor('Abstracts')
-# p.PreprocessingChain()
-# b = BooleanQuery(p.dictionary, p.postings, p.noOfDocs)
-# print(b.totalDocs)
-# # print(b.get_posting('temporal'))
-# # print(b.get_posting('deep'))
-# # print(b.get_posting('learning'))
-# print()
-
-
-# print(b.ProcessQuery("image AND restoration"))
-# print()
-# print(b.ProcessQuery("deep AND learning"))
-# print()
-# print(b.ProcessQuery("autoencoders"))
-# print()
-# print(b.ProcessQuery("temporal AND deep AND learning"))
-# print()
-# print(b.ProcessQuery("time AND Series"))
-# print()
-# print(b.ProcessQuery("time AND series AND classification"))
-# print()
-# print(b.ProcessQuery("time AND series OR classification"))
-# print()
-# print(b.ProcessQuery("pattern"))
-# print()
-# print(b.ProcessQuery("pattern AND clustering"))
-# print()
-# print(b.ProcessQuery("pattern AND clustering AND heart"))
-# print()

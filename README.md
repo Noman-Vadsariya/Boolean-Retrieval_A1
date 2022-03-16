@@ -1,7 +1,7 @@
 # Boolean-Retrieval_A1
 
 Dependencies
-pip install flask
+    pip install flask
 
 Run
-python app.py
+    python app.py

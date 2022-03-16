@@ -22,7 +22,7 @@ class QueryProcessor():
                         b = BooleanQuery(p.dictionary, p.postings, p.noOfDocs)
                         result_set,processingCost = b.ProcessQuery(query)
                 except:
-                    return ["Error in query string, try again"]
+                    return ["error",query]
 
                 print(result_set)
-                return (result_set,processingCost)
+                return (result_set,processingCost,query)

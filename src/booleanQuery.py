@@ -99,7 +99,7 @@ class BooleanQuery:
             tokens[i] = p.Stemming(tokens[i])
 
         if (len(tokens)) == 1:                                           # if single term simple return posting list of term
-            processingCost = self.get_posting_size(tokens[0])
+            processingCost = 0
             tempResult = self.get_posting(tokens[0])
 
         elif (len(tokens)) == 2 and tokens[0].upper() == "NOT":          #if two terms then it will be NOT operation

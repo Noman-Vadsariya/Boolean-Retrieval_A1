@@ -39,7 +39,8 @@ class ProximityQuery:
         p1 = list(p1.keys())                            
         p2 = list(p2.keys())
 
-        i = j = 0
+        i = 0
+        j = 0
         while i < len(p1) and j < len(p2):              # untill docId's of either t1 or t2 are not completely traversed
             
             if int(p1[i]) == int(p2[j]):
@@ -50,25 +51,26 @@ class ProximityQuery:
                 pos1 = self.get_positions(t1, p1[i])     
                 pos2 = self.get_positions(t2, p2[j])
 
-                ii = jj = 0
-                while ii != len(pos1):                              # while pos1 is not None
-                    while jj != len(pos2):                          # while pos2 is not None
+                indexPos1 = 0
+                indexPos2 = 0
+                while indexPos1 != len(pos1):                              # while pos1 is not None
+                    while indexPos2 != len(pos2):                          # while pos2 is not None
                         
-                        if abs(pos1[ii] - pos2[jj]) <= k + 1:       # if word difference b/w two terms is <= proximity 
-                            l.append(pos2[jj])  
+                        if abs(pos1[indexPos1] - pos2[indexPos2]) <= k + 1:       # if word difference b/w two terms is <= proximity 
+                            l.append(pos2[indexPos2])  
                         
-                        elif pos2[jj] > pos1[ii]:  
+                        elif pos2[indexPos2] > pos1[indexPos1]:  
                             break
 
-                        jj += 1                    # next position of t2 in pos2
+                        indexPos2 += 1                    # next position of t2 in pos2
                     
-                    while l != [] and abs(l[0] - pos1[ii]) > k + 1:  
+                    while l != [] and abs(l[0] - pos1[indexPos1]) > k + 1:  
                         l.remove(l[0])  
                     
                     for ps in l:
-                        answer.append([p1[i], pos1[ii], ps])        # add answer(docID(p1), pos(pp1), ps)
+                        answer.append([p1[i], pos1[indexPos1], ps])        # add answer(docID(p1), pos(pos1), ps)
                     
-                    ii += 1        # next position of t1 in pos1
+                    indexPos1 += 1        # next position of t1 in pos1
                 
                 i += 1        # next document for p1
                 j += 1        # next document for p2

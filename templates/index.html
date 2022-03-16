@@ -7,7 +7,6 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel= "stylesheet" href= "{{ url_for('static',filename='css/index.css') }}">
-        <script src="{{ url_for('static',filename='js/index.js') }}"></script>
     </head>
     <body>
         <div class="main">
@@ -18,10 +17,12 @@
                     <div class="search">
                         <div class="componets">
                             <div>
-                                <input type="text" name="query" id="query" class="input" placeholder="Type Boolean or Proximity Query" required>
+                                <input type="text" name="query" id="query" class="input" placeholder="Enter Boolean or Proximity Query" required>
                             </div>
                     </div>
                 </form>
+                <div>
+                </div>
             </div>
         </div>
     </body>

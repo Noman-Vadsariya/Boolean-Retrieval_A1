@@ -42,6 +42,16 @@ h3 {
   margin: 10px;
 }
 
+.cardText {
+  color:black;
+  text-align: center;
+}
+
+h4 {
+  color: #e8eaed;
+  margin: 10px;
+}
+
 .flex-search {
   display: flex;
   flex-direction: row;

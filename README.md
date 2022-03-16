@@ -1,26 +1,20 @@
 # Boolean-Retrieval_A1
 
-Project Structure
+Description
+    Boolean Retrieval Model have been implemented, which can process Boolean user query that can only be formed by joining three (or more) terms (t1, t2 and t3) with (AND, OR and NOT) Boolean operators. It can also process For positional queries, the query text contains “/” along with a k intended to return all documents that contains t1 and t2, k words apart on either side of the text
 
-# src
-
-* [__pycache__/](.\src\__pycache__)
-  * [bool.cpython-39.pyc](.\src\__pycache__\bool.cpython-39.pyc)
-  * [boolean.cpython-39.pyc](.\src\__pycache__\boolean.cpython-39.pyc)
-  * [booleanQuery.cpython-39.pyc](.\src\__pycache__\booleanQuery.cpython-39.pyc)
-  * [pre.cpython-39.pyc](.\src\__pycache__\pre.cpython-39.pyc)
-  * [preprocessor.cpython-39.pyc](.\src\__pycache__\preprocessor.cpython-39.pyc)
-  * [prox.cpython-39.pyc](.\src\__pycache__\prox.cpython-39.pyc)
-  * [proximityQuery.cpython-39.pyc](.\src\__pycache__\proximityQuery.cpython-39.pyc)
-  * [QueryProcessor.cpython-39.pyc](.\src\__pycache__\QueryProcessor.cpython-39.pyc)
-  * [tokenize.cpython-39.pyc](.\src\__pycache__\tokenize.cpython-39.pyc)
-* [booleanQuery.py](.\src\booleanQuery.py)
-* [preprocessor.py](.\src\preprocessor.py)
-* [proximityQuery.py](.\src\proximityQuery.py)
-* [QueryProcessor.py](.\src\QueryProcessor.py)
-
+Inverted Index Structure
     
+    Dictionary - key = Vocablary term  :  Value = list of docId in which term appears 
+    
+    { "term1" : [docIDs] , "term2" : [docIds] , "term2" : [docIds], ..... , , "termN" : [docIds]}
 
+Positional Index Structure
+
+    # {Vocablary term : {"docId in which term appears" : [postions at which term appear in that document] } } 
+    
+    # { "term1" : { "docId1" : [postions] , "docId2" : [postions] } , "term2" : { "docId1" : [postions] , "docId2" : [postions] },
+    #   .... "termN" : { "docId1" : [postions] , "docId2" : [postions] } }
 
 Dependencies
 

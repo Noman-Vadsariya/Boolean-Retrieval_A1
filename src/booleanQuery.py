@@ -1,7 +1,4 @@
-# from code import interact
-from src.pre import Preprocessor
-# import pre
-# import src.pre as pre
+from .preprocessor import Preprocessor
 
 
 class BooleanQuery:
@@ -10,12 +7,16 @@ class BooleanQuery:
         self.Dictionary = Dictionary
         self.totalDocs = totalDocs
 
+    # returns documents in which term appears
+
     def get_posting(self, term):
         if term in [*self.Postings.keys()]:
             return self.Postings[term]
         else:
             print(term + " Not in Vocablary")
             return []
+
+    # return Document Frequency for a term
 
     def get_posting_size(self, term):
         if term in [*self.Dictionary.keys()]:
@@ -24,13 +25,16 @@ class BooleanQuery:
             print(term + " not in vocablary")
             return -1
 
+    # performs intersection operation of two posting list
+
     def intersect(self, p1, p2):
         answer = []
 
         i1 = 0
         i2 = 0
-        while i1 < len(p1) and i2 < len(p2):
-            if p1[i1] == p2[i2]:
+        while i1 < len(p1) and i2 < len(p2):   # untill docId's of either t1 or t2 are not completely traversed
+            
+            if p1[i1] == p2[i2]:               # docId matches
                 answer.append(p1[i1])
                 i1 += 1
                 i2 += 1
@@ -41,6 +45,8 @@ class BooleanQuery:
                 i2 += 1
 
         return answer
+
+    # performs union operation of two posting list
 
     def union(self, p1, p2):
         answer = []
@@ -69,35 +75,42 @@ class BooleanQuery:
 
         return answer
 
+    # performs complement operation on given posting list
+
     def complement(self, p):
         answer = []
-        for i in range(self.totalDocs):
+        for i in range(self.totalDocs):             #appending all docIds excepts the one in which term occurs 
             if i not in p:
                 answer.append(i)
 
         return answer
 
+    # Parses Boolean Query and Caculates Processing Cost
+    
     def ProcessQuery(self, query):
 
         processingCost = 0  # no of DocIDs traversed
 
-        p = Preprocessor()
-        tokens = query.split()
+        p = Preprocessor()                               
+        tokens = query.split()                      #split query
 
-        for i in range(len(tokens)):
+        for i in range(len(tokens)):                #stem query terms
             tokens[i] = p.Stemming(tokens[i])
 
-        if (len(tokens)) == 1:
+        if (len(tokens)) == 1:                                           # if single term simple return posting list of term
             processingCost = self.get_posting_size(tokens[0])
             tempResult = self.get_posting(tokens[0])
 
-        elif (len(tokens)) == 2 and tokens[0].upper() == "NOT":
+        elif (len(tokens)) == 2 and tokens[0].upper() == "NOT":          #if two terms then it will be NOT operation
             processingCost = self.totalDocs - self.get_posting_size(tokens[1])
             tempResult = self.complement(self.get_posting(tokens[1]))
 
         else:
             i = 0
             tempResult = None
+
+            #linearly traversing query terms and perform operator left to right
+            
             while i < len(tokens):
 
                 if tokens[i].upper() == "AND":
@@ -117,13 +130,8 @@ class BooleanQuery:
                     if tempResult is None:
                         tempResult = p1
 
-                    print(len(tempResult))
-                    print(len(p2))
                     processingCost += min(len(tempResult), len(p2))
                     tempResult = self.intersect(tempResult, p2)
-                    print(processingCost)
-                    # print(temp)
-                    # print()
 
                 elif tokens[i].upper() == "OR":
                     if tempResult is None:
@@ -142,15 +150,8 @@ class BooleanQuery:
                     if tempResult is None:
                         tempResult = p1
 
-                    # print(len(temp))
-                    # print(len(p2))
-                    processingCost += len(tempResult) + len(
-                        p2
-                    )  # at max processing cost can be this
-                    tempResult = self.union(tempResult, p2)
-                    print(processingCost)  # at min will be 0
-                    # print(temp)
-                    # print()
+                    processingCost += len(tempResult) + len(p2)
+                    tempResult = self.union(tempResult, p2)   # cost of union operation can be at min will be 0
                 i += 1
 
         result = [i + 1 for i in tempResult]

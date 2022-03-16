@@ -1,7 +1,8 @@
-from concurrent.futures import process
-from .pre import Preprocessor
-from .boolean import BooleanQuery
-from .prox import ProximityQuery
+from .preprocessor import Preprocessor
+from .booleanQuery import BooleanQuery
+from .proximityQuery import ProximityQuery
+
+# Receives Query from frontend and responds with a resultset
 
 class QueryProcessor():
     
@@ -15,7 +16,7 @@ class QueryProcessor():
                 tokens = query.split()
                 processingCost = -1
                 try:
-                    if len(tokens)>2 and '/' == tokens[2][0]:
+                    if len(tokens)>2 and '/' == tokens[2][0]:     # if / present, then proximity query else boolean query
                         prox = ProximityQuery(p.PositonalIndex)
                         result_set = prox.ProcessProximityQuery(query)
                     else:

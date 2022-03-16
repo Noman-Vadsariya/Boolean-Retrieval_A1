@@ -1,6 +1,6 @@
 # from code import interact
-# from src.pre import Preprocessor
-import pre
+from src.pre import Preprocessor
+# import pre
 # import src.pre as pre
 
 
@@ -81,7 +81,7 @@ class BooleanQuery:
 
         processingCost = 0  # no of DocIDs traversed
 
-        p = pre.Preprocessor()
+        p = Preprocessor()
         tokens = query.split()
 
         for i in range(len(tokens)):
@@ -158,33 +158,33 @@ class BooleanQuery:
 
 
 # p = pre.Preprocessor("F:\IR\Assignment 01\Documents")
-p = pre.Preprocessor('Abstracts')
-p.PreprocessingChain()
-b = BooleanQuery(p.dictionary, p.postings, p.noOfDocs)
-print(b.totalDocs)
-# print(b.get_posting('temporal'))
-# print(b.get_posting('deep'))
-# print(b.get_posting('learning'))
-print()
+# p = pre.Preprocessor('Abstracts')
+# p.PreprocessingChain()
+# b = BooleanQuery(p.dictionary, p.postings, p.noOfDocs)
+# print(b.totalDocs)
+# # print(b.get_posting('temporal'))
+# # print(b.get_posting('deep'))
+# # print(b.get_posting('learning'))
+# print()
 
 
-print(b.ProcessQuery("image AND restoration"))
-print()
-print(b.ProcessQuery("deep AND learning"))
-print()
-print(b.ProcessQuery("autoencoders"))
-print()
-print(b.ProcessQuery("temporal AND deep AND learning"))
-print()
-print(b.ProcessQuery("time AND Series"))
-print()
-print(b.ProcessQuery("time AND series AND classification"))
-print()
-print(b.ProcessQuery("time AND series OR classification"))
-print()
-print(b.ProcessQuery("pattern"))
-print()
-print(b.ProcessQuery("pattern AND clustering"))
-print()
-print(b.ProcessQuery("pattern AND clustering AND heart"))
-print()
+# print(b.ProcessQuery("image AND restoration"))
+# print()
+# print(b.ProcessQuery("deep AND learning"))
+# print()
+# print(b.ProcessQuery("autoencoders"))
+# print()
+# print(b.ProcessQuery("temporal AND deep AND learning"))
+# print()
+# print(b.ProcessQuery("time AND Series"))
+# print()
+# print(b.ProcessQuery("time AND series AND classification"))
+# print()
+# print(b.ProcessQuery("time AND series OR classification"))
+# print()
+# print(b.ProcessQuery("pattern"))
+# print()
+# print(b.ProcessQuery("pattern AND clustering"))
+# print()
+# print(b.ProcessQuery("pattern AND clustering AND heart"))
+# print()

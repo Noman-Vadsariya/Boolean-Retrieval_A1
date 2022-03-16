@@ -24,8 +24,6 @@ class ProximityQuery:
 
         t1 = p.Stemming(t1)
         t2 = p.Stemming(t2)
-        print(t1)
-        print(t2)
         answer = []
 
         p1 = self.get_posting(t1)
@@ -37,8 +35,6 @@ class ProximityQuery:
         
         p1 = list(p1.keys())
         p2 = list(p2.keys())
-        print(p1)
-        print(p2)
 
         i=j=0 
         while i<len(p1) and j<len(p2):
@@ -58,10 +54,10 @@ class ProximityQuery:
                                         break    
                                 jj+=1                                           # pp2 <- next(pp2)      
                         #l.sort()                                               
-                        while l != [] and abs(l[0] - pp1[ii]) > k+1 :             # while (l != () and |l(0) - pos(pp1)| > k)
+                        while l != [] and abs(l[0] - pp1[ii]) > k+1:             # while (l != () and |l(0) - pos(pp1)| > k)
                                 l.remove(l[0])                                  # delete(l[0])
                         for ps in l:                                            # for each ps in l
-                                answer.append([int(p1[i])+1, pp1[ii], ps ])    # add answer(docID(p1), pos(pp1), ps)
+                                answer.append([p1[i], pp1[ii], ps ])    # add answer(docID(p1), pos(pp1), ps)
                         ii+=1                                                   # pp1 <- next(pp1)
                 i+=1                                                            # p1 <- next(p1)
                 j+=1
@@ -76,13 +72,27 @@ class ProximityQuery:
     def ProcessProximityQuery(self,query):
         tokens = query.split()
         k = int(re.sub(r'[^\w\s]','',tokens[2]))
-        print(k)
-        return self.posting_intersect(tokens[0],tokens[1],k)
+        # print(k)
+        result_set = self.posting_intersect(tokens[0],tokens[1],k)
+
+        ret_docs = {}
+        for result in result_set:
+            docNo = int(result[0])+1  #docNo = doc_index + 1
+            if docNo not in ret_docs:
+                ret_docs[docNo] = [(result[1],result[2])]
+            else:
+                ret_docs[docNo].append((result[1],result[2]))
+
+        return ret_docs
+
+
 
 # p = pre.Preprocessor('F:\IR\Assignment 01\Abstracts')
 # p.PreprocessingChain()
 # prox = ProximityQuery(p.PositonalIndex)
-# print(prox.PostionalIndex)
-# # print(prox.ProcessProximityQuery('neural information /2'))
-# # print() 
+# # print(prox.PostionalIndex)
+# print(prox.ProcessProximityQuery('neural information /2'))
+# print() 
 # print(prox.ProcessProximityQuery('feature track /5'))
+# print() 
+# print(prox.ProcessProximityQuery('novel accurate /2'))

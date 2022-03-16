@@ -12,10 +12,11 @@
     </head>
     <body>
         <h1>Search Result</h1>
-        <h3>Query Processing cost = {{tasks[1]}}</h3>
+        {% if tasks[1] != -1 %}
+            <h3>Query Processing cost = {{tasks[1]}}</h3>
+        {% endif %}
         <div class="flex-container">
             {% for task in tasks[0] %}
-            {i=0}
             <div class="card">
                 <div class="container">
                         <h4>{{task}}</h4>
@@ -30,6 +31,5 @@
             </div>
             {% endfor %}
         </div>
-
     </body>
 </html>

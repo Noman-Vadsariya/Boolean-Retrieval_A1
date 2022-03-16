@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel= "stylesheet" href= "{{ url_for('static',filename='css/index.css') }}">
+        <script src="{{ url_for('static',filename='js/index.js') }}"></script>
+    </head>
+    <body>
+        <div class="main">
+            <form method="POST">
+                <div>
+                <h1 class = "heading">Boogle</h1>
+                </div>
+                    <div class="search">
+                        <div class="componets">
+                            <div>
+                                <input type="text" name="query" id="query" class="input">
+                            </div>
+                            <div class="btns">
+                                <button class="btn" id="searchBtn">Search</button> 
+                                <button class="btn" id="clearBtn" onclick = "clear()">Clear</button>   
+                            </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
